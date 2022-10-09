@@ -7,11 +7,11 @@
 // ];
 
 import { ContactsListItem } from './ContactsListItem';
-//import css from './FriendList.module.css';
+import css from './ContactsList.module.css';
 export const ContactsList = ({ contacts }) => {
   return (
     <>
-      <ul>
+      <ul className={css.contacts_list}>
         <ContactsListItem contacts={contacts} />
       </ul>
     </>

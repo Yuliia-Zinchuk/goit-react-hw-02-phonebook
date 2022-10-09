@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactsForm } from './ContactsForm/ContactsForm';
 import { ContactsList } from './ContactsList/ContactsList';
+import { Section } from './Section/Section';
 
 export class App extends Component {
   state = {
@@ -33,7 +34,9 @@ export class App extends Component {
 
     return (
       <>
-        <ContactsForm onSubmit={this.onAddTaco} />
+        <Section title="Phonebook">
+          <ContactsForm onSubmit={this.onAddTaco} />
+        </Section>
         {/* <ContactsList */}
         {/* {contacts.map(contact => {
           return (
@@ -44,9 +47,9 @@ export class App extends Component {
             </span>
           );
         })} */}
-        <ul>
-          <ContactsList contacts={contacts} />
-        </ul>
+        <Section title="Contacts">
+          {contacts && <ContactsList contacts={contacts} />}
+        </Section>
       </>
     );
   }
