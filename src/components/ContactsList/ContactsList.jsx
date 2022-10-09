@@ -8,23 +8,28 @@
 
 import { ContactsListItem } from './ContactsListItem';
 import css from './ContactsList.module.css';
-export const ContactsList = ({ contacts }) => {
+export const ContactsList = ({ contacts, filter }) => {
   return (
     <>
       <ul className={css.contacts_list}>
-        <ContactsListItem contacts={contacts} />
+        <ContactsListItem
+          contacts={contacts.filter(contact => contact.name.includes(filter))}
+        />
       </ul>
     </>
   );
 };
 
-// export const ContactsList = ({ contacts }) => {
-//   return contacts.map(contact => {
-//     <span>
+//---------------было до фильтрации
 
-//       {/* key={contact.id} */}
-//       {contact.name}
-//       {contact.number}
-//     </span>;
-//   });
+// import { ContactsListItem } from './ContactsListItem';
+// import css from './ContactsList.module.css';
+// export const ContactsList = ({ contacts }) => {
+//   return (
+//     <>
+//       <ul className={css.contacts_list}>
+//         <ContactsListItem contacts={contacts} />
+//       </ul>
+//     </>
+//   );
 // };
