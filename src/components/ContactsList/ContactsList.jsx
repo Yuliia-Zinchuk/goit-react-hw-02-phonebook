@@ -8,11 +8,12 @@
 
 import { ContactsListItem } from './ContactsListItem';
 import css from './ContactsList.module.css';
-export const ContactsList = ({ contacts, filter }) => {
+export const ContactsList = ({ contacts, filter, onDeleteContact }) => {
   return (
     <>
       <ul className={css.contacts_list}>
         <ContactsListItem
+          onDeleteContact={onDeleteContact}
           contacts={contacts.filter(contact =>
             contact.name.toLowerCase().includes(filter.toLowerCase())
           )}

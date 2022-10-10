@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactsForm } from './ContactsForm/ContactsForm';
 import { ContactsList } from './ContactsList/ContactsList';
+import { ContactsListItem } from './ContactsList/ContactsListItem';
 import { Section } from './Section/Section';
 import { Filter } from './Filter/Filter';
 
@@ -54,11 +55,21 @@ export class App extends Component {
     });
   };
 
-  onDelete = data => {
-    console.log(data);
+  // onDelete = data => {
+  //   console.log(data);
 
-    // handleNameChange = e => {
-    //   this.setState({ name: e.target.value });
+  //   // handleNameChange = e => {
+  //   //   this.setState({ name: e.target.value });
+  // };
+  onDeleteTaco = tacoId => {
+    // console.log(id);
+    // this.setState({
+    this.setState(prevState => {
+      // console.log('prevState: ', prevState.contacts); // [{id: 1}, {id: 2}, {id: 3}]
+      return {
+        contacts: prevState.contacts.filter(contact => contact.id !== tacoId), // tacoId = 2 [{id: 1}, {id: 2}, {id: 3}] -> [{id: 1}, {id: 3}]
+      };
+    });
   };
 
   render() {
@@ -74,10 +85,22 @@ export class App extends Component {
         <Section title="Contacts">
           {<Filter handleChange={this.handleChange} />}
           {contacts && (
-            <ContactsList contacts={contacts} filter={this.state.filter} />
+            <ContactsList
+              contacts={contacts}
+              filter={this.state.filter}
+              onDeleteContact={this.onDeleteTaco}
+            />
           )}
         </Section>
-
+        {/* <ContactsListItem onDeleteContact={this.onDeleteTaco} /> */}
+        {/* <button
+          onClick={e => {
+            this.onDeleteTaco('id-2');
+          }}
+          type="button"
+        >
+          Delete
+        </button> */}
         {/* <Section title="Filter"></Section> */}
       </>
     );
