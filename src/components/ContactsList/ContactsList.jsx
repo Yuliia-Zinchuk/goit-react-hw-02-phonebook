@@ -13,7 +13,9 @@ export const ContactsList = ({ contacts, filter }) => {
     <>
       <ul className={css.contacts_list}>
         <ContactsListItem
-          contacts={contacts.filter(contact => contact.name.includes(filter))}
+          contacts={contacts.filter(contact =>
+            contact.name.toLowerCase().includes(filter.toLowerCase())
+          )}
         />
       </ul>
     </>

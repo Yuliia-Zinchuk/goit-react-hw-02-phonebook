@@ -14,13 +14,22 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
+    // name: '',
+    // number: '',
   };
 
   onAddTaco = data => {
-    // data - це об'єкт taco
-    console.log(data);
+    // data - це об'єкт taco'
+    // const d = data.name;
+    // console.log(d);
+    // const err = this.state.contacts.filter(contact => contact.name === { d });
+    if (this.state.contacts.find(contact => contact.name === `${data.name}`)) {
+      alert(`${data.name} is already in contacts.`);
+      return;
+    }
+    // console.log(data.name);
+    // console.log(err);
+    // console.log(this.state.contacts);
     const contact = {
       id: nanoid(),
       ...data,
@@ -45,7 +54,7 @@ export class App extends Component {
     });
   };
 
-  onFilter = data => {
+  onDelete = data => {
     console.log(data);
 
     // handleNameChange = e => {
@@ -61,45 +70,15 @@ export class App extends Component {
         <Section title="Phonebook">
           <ContactsForm onSubmit={this.onAddTaco} />
         </Section>
-        {/* <ContactsList */}
-        {/* {contacts.map(contact => {
-          return (
-            <span>
-              key={contact.id}
-              {contact.name}
-              {contact.number}
-            </span>
-          );
-        })} */}
+
         <Section title="Contacts">
+          {<Filter handleChange={this.handleChange} />}
           {contacts && (
             <ContactsList contacts={contacts} filter={this.state.filter} />
           )}
         </Section>
 
-        {/* <label>
-          <span>Find</span>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="name"
-           
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-           
-          />
-        </label> */}
-
-        <Section title="Filter">
-          {
-            <Filter
-              handleChange={this.handleChange}
-              // contacts={this.state.contacts}
-              // filter={this.state.filter}
-            />
-          }
-        </Section>
+        {/* <Section title="Filter"></Section> */}
       </>
     );
   }
