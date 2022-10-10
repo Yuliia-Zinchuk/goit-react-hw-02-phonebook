@@ -1,11 +1,4 @@
-//import { FriendListItem } from './FriendListItem';
-//import css from './FriendList.module.css';
-// const contactsArray = [
-//   { id: 'id-1', name: 'Rosie Simpson' },
-//   { id: 'id-2', name: 'Hermione Kline' },
-//   { id: 'id-3', name: 'Eden Clements' },
-// ];
-
+import PropTypes from 'prop-types';
 import { ContactsListItem } from './ContactsListItem';
 import css from './ContactsList.module.css';
 export const ContactsList = ({ contacts, filter, onDeleteContact }) => {
@@ -23,16 +16,15 @@ export const ContactsList = ({ contacts, filter, onDeleteContact }) => {
   );
 };
 
-//---------------было до фильтрации
+ContactsList.propTypes = {
+  filter: PropTypes.string.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 
-// import { ContactsListItem } from './ContactsListItem';
-// import css from './ContactsList.module.css';
-// export const ContactsList = ({ contacts }) => {
-//   return (
-//     <>
-//       <ul className={css.contacts_list}>
-//         <ContactsListItem contacts={contacts} />
-//       </ul>
-//     </>
-//   );
-// };
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      // number: PropTypes.number.isRequired,
+    }).isRequired
+  ),
+};

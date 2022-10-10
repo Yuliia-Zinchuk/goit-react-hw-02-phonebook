@@ -2,12 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import css from './ContactsForm.module.css';
 
-// const INITIAL_FORM_DATA = {
-//     name: '',
-//     number: '',
-//   //   discount: false,
-// };
-
 export class ContactsForm extends Component {
   state = {
     name: '',
@@ -15,19 +9,14 @@ export class ContactsForm extends Component {
   };
   handleChange = e => {
     const { name, value } = e.target;
-    console.log(e.target);
-    console.log(e.target.name);
-    console.log(e.target.value);
-    // this.setState({
-    //   [e.target.name]: e.target.value,
-    // });
+
     this.setState({
       [name]: value,
     });
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+
     this.props.onSubmit(this.state);
     this.reset();
   };
@@ -50,7 +39,6 @@ export class ContactsForm extends Component {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
-            // value={name}
           />
         </label>
 
@@ -76,6 +64,6 @@ export class ContactsForm extends Component {
   }
 }
 
-// TacoForm.propTypes = {
-//   onAddTaco: PropTypes.func.isRequired,
-// };
+ContactsForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

@@ -1,24 +1,14 @@
 import PropTypes from 'prop-types';
-//import css from './ContactsList.module.css';
-
-// export const ContactsListItem = ({ contacts, onDeleteContact }) => {
-//   return contacts.map(({ id, name, number }) => (
-//     <li key={id}>
-//       <p>
-//         {name}: {number}
-//       </p>
-//       <button onClick={() => onDeleteContact()}>Delete</button>
-//     </li>
-//   ));
-// };
+import css from './ContactsList.module.css';
 
 export const ContactsListItem = ({ contacts, onDeleteContact }) => {
   return contacts.map(contact => (
-    <li key={contact.id}>
+    <li className={css.contactItem} key={contact.id}>
       <p>
         {contact.name}: {contact.number}
       </p>
       <button
+        className={css.btn}
         onClick={e => {
           onDeleteContact(contact.id);
         }}
@@ -26,15 +16,18 @@ export const ContactsListItem = ({ contacts, onDeleteContact }) => {
       >
         Delete
       </button>
-      ;
-      {/* <button
-        onClick={e => {
-          onDeleteContact(id);
-        }}
-        type="button"
-      >
-        Delete
-      </button> */}
     </li>
   ));
+};
+
+ContactsListItem.propTypes = {
+  onDeleteContact: PropTypes.func.isRequired,
+
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.node.isRequired,
+    }).isRequired
+  ),
 };
